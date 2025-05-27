@@ -25,4 +25,5 @@ g++ main.cpp documentmanager.cpp -o gerenciador./gerenciador
 ```
 
 ## Autor
-grupo Gerenciador de documentos (turma PDS2)
+
+Desenvolvido como parte de um trabalho prático de PDS2 (Programação e Desenvolvimento de Software 2).
