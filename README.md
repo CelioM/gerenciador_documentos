@@ -28,3 +28,4 @@ g++ main.cpp documentmanager.cpp -o gerenciador./gerenciador
 ## Autor
 
 grupo gerenciador de documentos (PDS2)
+
