@@ -9,6 +9,7 @@ public:
     void criarDocumento(const std::string& nome, const std::string& titulo, const std::string& atribuido);
     void excluirDocumento(const std::string& nome);
     void criarEstrutura(); // Cria pasta e CSV automaticamente
+    void listarArquivos();
 private:
     std::string caminhoPasta;
     std::string caminhoCSV;

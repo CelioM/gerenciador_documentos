@@ -24,7 +24,7 @@ int main() {
         std::string opcao;
         std::cout << "\nMenu:\n";
         if (tipo == TipoUsuario::CRIADOR) {
-            std::cout << "1. Criar documento\n2. Excluir documento\n0. Sair\n";
+            std::cout << "1. Criar documento\n2. Excluir documento\n3. Listar Documentos\n0. Sair\n";
         } else {
             std::cout << "1. Aprovar documento\n2. Reprovar documento\n3. Atender comentário\n0. Sair\n";
         }
@@ -50,6 +50,8 @@ int main() {
                 std::cout << "Nome do documento a excluir: ";
                 std::cin >> nome;
                 manager.excluirDocumento(nome);
+            } else if (opcao == "3") {
+                manager.listarArquivos();
             }
         } else if (tipo == TipoUsuario::ANALISTA) {
             std::string nome;
@@ -66,6 +68,7 @@ int main() {
                 std::getline(std::cin, comentario);
                 doc.reprovar(comentario);
             } else if (opcao == "3") {
+                std::cout << std::endl;
                 doc.atenderComentario();
             }
         }

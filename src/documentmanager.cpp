@@ -42,3 +42,14 @@ void DocumentManager::excluirDocumento(const std::string& nome) {
     std::filesystem::remove(caminhoPasta + "/" + nome);
     // Regrava o CSV sem a linha correspondente (exercício opcional)
 }
+void DocumentManager::listarArquivos() {
+    try {
+        for (const auto& entry : std::filesystem::directory_iterator(caminhoPasta)) {
+            if (entry.is_regular_file()) {
+                std::cout << entry.path().filename().string() << std::endl;
+            }
+        }
+    } catch (const std::filesystem::filesystem_error& e) {
+        std::cerr << "Erro ao acessar o diretório: " << e.what() << std::endl;
+    }
+}
