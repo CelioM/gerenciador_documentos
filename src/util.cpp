@@ -5,7 +5,7 @@
 
 std::string Util::obterCaminhoDesktop() {
     const char* home = getenv("HOME");
-    return std::string(home) + "/Área de Trabalho";
+    return std::string(home);// + "/Área de Trabalho"; - não funcionou no meu
 }
 
 std::string Util::obterDataHoraAtual() {
