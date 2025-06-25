@@ -10,12 +10,15 @@ Neste programa, é possivel o analista, após o document manager inserir um docu
 
 Cada usuário pode executar uma ação por vez no documento, o analista 1 pode reprovar ou aprovar, caso reprove e insira o motivo da reprovação, ele somente poderá voltar a alterar o documento após o projetista/analista X atender o comentário (e automaticamente sua revisão será alterada), assim o analista que fez o comentário e reprova pode voltar à aprovar ou reprovar o documento. O Document Manager pode criar e excluir o documento quando ele quiser.
 
+Este projeto em C++ simula um sistema de gerenciamento de documentos (GED), onde é possível criar, atualizar, aprovar ou reprovar documentos de um projeto de engenharia. Os dados sobre os documentos são armazenados em um arquivo CSV e os documentos simulam (são criados, para fins didáticos, mas na prática seria via upload, queremos testar fluxo de aprovação) arquivos PDF de projetos, todos armazenados em uma pasta na área de trabalho. Essa aplicação é importante para o registro de análise de documentos de projetos de engenharia, desde comentários técnicos até a aprovação do documento, que pode ser utilizado para orientação e aplicação em obra, construção, fabricação/instalação de equipamentos e afins.
+
 ## Funcionalidades
 
-- Criar documento com nome (taxonomia: duf-quadroqpc1.pdf) e título (diagrama unifilar - quadro qpc1) imutáveis.
-- Estados de revisão: 00A → 00B → 00C → aprovado(00).
-- Reprovação gera reinício do processo de revisão, quando atendido a reprovação, altera revisão.
-- Cada documento criado gera um "PDF simulado" com nome e título (o PDF terá o nome igual a taxonomia do documento).
+- Criar documento com nome e título imutáveis.
+- Status de revisão: 00A → 00B → 00C → aprovado(00).
+- Reprovação gera reinício do processo de revisão.
+- Após a alteração do status, você é retornado para o login, para outro analista mudar o status, uma vez que um analista já fez a sua análise, ele aguarda outro analista para prosseguir o fluxo.
+- Cada documento criado gera um "PDF simulado" com nome e título (o PDF terá o nome como taxonomia).
 - Pasta e CSV são criados automaticamente na área de trabalho pelo programa.
 - Horário da ultima revisão do documento é gerada automaticamente pelo programa.
 - O analista pode atribuir ou não à algum analista específico (opcional), mas não restringe outros analistas da empresa a alterarem/corrigir o documento.
@@ -29,6 +32,7 @@ Cada usuário pode executar uma ação por vez no documento, o analista 1 pode r
 - `usuario.cpp`: implementação das funções de login.
 - `util.cpp`: implementação das funções de criação de pasta na área de trabalho e buscar  informações do sistema operacional.
 
+
 ## Como compilar
 
 ```bash
@@ -38,3 +42,4 @@ g++ main.cpp documentmanager.cpp -o gerenciador./gerenciador
 ## Autor
 
 grupo gerenciador de documentos (PDS2)
+
