@@ -26,7 +26,7 @@ int main() {
         if (tipo == TipoUsuario::CRIADOR) {
             std::cout << "1. Criar documento\n2. Excluir documento\n3. Listar Documentos\n0. Sair\n";
         } else {
-            std::cout << "1. Aprovar documento\n2. Reprovar documento\n3. Atender comentário\n0. Sair\n";
+            std::cout << "1. Aprovar documento\n2. Reprovar documento\n3. Atender comentário\n4. Listar Documentos\n0. Sair\n";
         }
 
         std::cout << "Escolha uma opção: ";
@@ -54,26 +54,36 @@ int main() {
                 manager.listarArquivos();
             }
         } else if (tipo == TipoUsuario::ANALISTA) {
-            std::string nome;
-            std::cout << "Nome do documento: ";
-            std::cin >> nome;
-            Documento doc(nome);
+            
 
             if (opcao == "1") {
+                std::string nome;
+                std::cout << "Nome do documento: ";
+                std::cin >> nome;
+                Documento doc(nome);
                 doc.aprovar();
             } else if (opcao == "2") {
+                std::string nome;
+                std::cout << "Nome do documento: ";
+                std::cin >> nome;
+                Documento doc(nome);
                 std::cin.ignore();
                 std::string comentario;
                 std::cout << "Comentário da reprovação: ";
                 std::getline(std::cin, comentario);
                 doc.reprovar(comentario);
             } else if (opcao == "3") {
+                std::string nome;
+                std::cout << "Nome do documento: ";
+                std::cin >> nome;
+                Documento doc(nome);
                 std::cout << std::endl;
                 doc.atenderComentario();
+            } else if (opcao == "4") {
+                manager.listarArquivos();
             }
         }
     }
-
     std::cout << "Encerrando o programa.\n";
     return 0;
 }
