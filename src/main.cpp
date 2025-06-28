@@ -10,89 +10,87 @@ using namespace std;
 
 void testeGED()
 {
-	cout << " Teste 1:" <endl;
-	GEDSystem sistema;
+    cout << "Teste 1:" << endl;
+    GEDSystem sistema;
 
-	cout << "Sistema inicializado com exito" << endl;
-	
-	//Teste com credenciais erradas
-	cout << "Tentativa de login" << endl;
+    cout << "Sistema inicializado com exito" << endl;
 
-	if(!sistema.login ("Nome_errado", "Senha_aleatória")
-	{
-		cout << "O sistema recusou o login(como esperado)" << endl;
-	}
-	else
-	{
-		cout << "Sucesso no gerenciamento de cadastramento!" << endl;
-	}
+    // Teste com credenciais erradas
+    cout << "Tentativa de login" << endl;
 
-	//Teste como documentmanager
+    if(!sistema.login("Nome_errado", "Senha_aleatória"))
+    {
+        cout << "O sistema recusou o login (como esperado)" << endl;
+    }
+    else
+    {
+        cout << "ERRO: Sucesso inesperado no login com credenciais inválidas!" << endl;
+    }
 
-	cout << "Teste de login como document manager..." << endl;
+    // Teste como document manager
+    cout << "Teste de login como document manager..." << endl;
 
-	if(sistema.login("admin", "admin123")
-	{
-		cout << "Sucesso foi cadastrado um document manager" << endl;
+    if(sistema.login("admin", "admin123"))
+    {
+        cout << "Sucesso: Foi cadastrado um document manager" << endl;
 
-		cout << "Criando um novo documento..." << endl;
-		
-		//Cria documento válido
-		sistema.criarDocumento("document_test","teste!", "anonimos");
-		sistema.listarDocumentos();
-		cout << "Documento criado" << endl;
+        cout << "Criando um novo documento..." << endl;
 
-		//Tenta criar documento com usuário 
-		cout << "Tentando criar documento com usuário inválido" << endl;
-		sistema.criarDocumento("DOc_teste","Gerenc_p1","unkown") << endl;
-		cout << "sucesso na criacao" << endl;
-		
-		//Desativação do usuário
-		sistema.logout();
-	}	
-	else
-	{
-		cout << "Falha nao foi possível fazer o login como admin" << endl;
-	}
+        // Cria documento válido - cuidado com o nome do usuário atribuído
+        sistema.criarDocumento("document_test", "teste!", "admin");
 
-	//Teste como analista
-	
-	cout << "Teste de login como analista..." << endl;
+        sistema.listarDocumentos();
+        cout << "Documento criado" << endl;
 
-	if(sistema.login("pinhati","senha_pinhati"))
-	{
-		cout << "Login como analista foi feito" << endl;
+        // Tenta criar documento com usuário inválido
+        cout << "Tentando criar documento com usuário inválido" << endl;
+        sistema.criarDocumento("DOc_teste", "Gerenc_p1", "unkown");
+        cout << "Sucesso: Sistema recusou/criou documento conforme esperado" << endl;
 
-		//aprova documento
-		cout << "Tentativa de aprovação de documento" << endl;
-		sistema.aprovarDocumento("DOC-001");
+        // Desativação do usuário
+        sistema.logout();
+    }
+    else
+    {
+        cout << "Falha: Não foi possível fazer o login como admin" << endl;
+    }
 
-		//reprova
-		cout<< "Reprovando documento" << endl;
-		sistema.reprovarDocumento("DOC-001","Falta especifications");
-		sistema.visualizarComentarios("DOC-001");
+    // Teste como analista
+    cout << "Teste de login como analista..." << endl;
 
-		sistema.logout();
-	}
-	else
-	{
-		cout << "Falha não foi possível logar como analista" << endl;
-	}
+    if(sistema.login("pinhati", "senha_pinhati"))
+    {
+        cout << "Login como analista foi feito" << endl;
 
+        // Aprova documento
+        cout << "Tentativa de aprovação de documento" << endl;
+        sistema.aprovarDocumento("document_test");
+
+        // Reprova documento
+        cout << "Reprovando documento" << endl;
+        sistema.reprovarDocumento("document_test", "Falta especifications");
+        sistema.visualizarComentarios("document_test");
+
+        sistema.logout();
+    }
+    else
+    {
+        cout << "Falha: Não foi possível logar como analista" << endl;
+    }
 }
 
 int main()
 {
-	try
-	{
-		testeGED();
-		cout << "\n=== Todos os teste foram feitos ===\n" << endl;	
-	}
-	catch(const exception& e)
-	{
-		cerr << "\nERRO NA FASE DE TESTE" << "razao: "  << e.what() << endl;
-		return 1;
-	}
+    try
+    {
+        testeGED();
+        cout << "\n=== Todos os testes foram feitos ===\n" << endl;
+    }
+    catch(const exception& e)
+    {
+        cerr << "\nERRO NA FASE DE TESTE. Razão: " << e.what() << endl;
+        return 1;
+    }
 
-	return 0;
+    return 0;
 }
